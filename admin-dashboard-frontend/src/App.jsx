@@ -15,4 +15,5 @@ function App() {
 
 export default App;
 
-// this comment is added to check the CI funtionality for the admin dashboard.
+
+// This comment is added to check the CI functionality for the admin dashboard.
