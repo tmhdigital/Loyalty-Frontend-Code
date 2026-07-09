@@ -18,4 +18,4 @@ function App() {
 export default App;
 
 
-// This comment is added to check the CI functionality for the business dashboard.
+// This comment is added to check the CI functionality for the business dashboard. Type check is removed.
