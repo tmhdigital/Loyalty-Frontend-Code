@@ -15,5 +15,4 @@ function App() {
 
 export default App;
 
-
 // This comment is added to check the CI functionality for the admin dashboard.Type check is removed.
