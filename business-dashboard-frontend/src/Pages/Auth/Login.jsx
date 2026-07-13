@@ -1,5 +1,6 @@
 import { Form, Input, message } from "antd";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import FormItem from "../../components/common/FormItem";
 import image4 from "../../assets/image4.png";
@@ -19,9 +20,11 @@ const Login = () => {
   const { refetch } = useUser();
   const [login, { isLoading }] = useLoginMutation();
   const [googleLogin] = useGoogleLoginMutation();
-
+  const [, setGoogleLoading] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const handleGoogleSuccess = async (credentialResponse) => {
+    setGoogleLoading(true);
     try {
       // Clear previous user's Redux cache
       dispatch(api.util.resetApiState());
@@ -40,20 +43,31 @@ const Login = () => {
       const data = await googleLogin(googlePayload).unwrap();
 
       if (data?.data?.accessToken || data?.accessToken) {
-        message.success("Google login successful!");
-
         const { accessToken, refreshToken, role } = extractAuthTokens(data);
 
         if (accessToken) {
           setAuthTokens(accessToken, refreshToken);
+          setIsNavigating(true);
 
           try {
-            await refetch();
+            const profile = await dispatch(
+              api.endpoints.profile.initiate(undefined, { forceRefetch: true }),
+            ).unwrap();
+
+            try {
+              await refetch();
+            } catch (e) {
+              /* ignore */
+            }
+
+            message.success("Google login successful!");
+            const finalRole = profile?.user?.role || profile?.role || role;
+            navigate(getMerchantRedirectPath(finalRole), { replace: true });
           } catch (error) {
             console.warn("Profile fetch delayed:", error);
+            message.success("Google login successful!");
+            navigate(getMerchantRedirectPath(role), { replace: true });
           }
-
-          navigate(getMerchantRedirectPath(role), { replace: true });
         } else {
           message.error("Token not found in response");
           console.error("Token not in response:", data);
@@ -65,6 +79,9 @@ const Login = () => {
     } catch (error) {
       console.error("Google login error:", error);
       message.error("An error occurred during Google login");
+      setGoogleLoading(false);
+      // We don't set isNavigating to false here because if successful, it's navigating away.
+      // If it failed before navigation, isNavigating is still false.
     }
   };
 
@@ -97,18 +114,30 @@ const Login = () => {
       }
 
       setAuthTokens(accessToken, refreshToken);
-
-      message.success("Login successful!");
+      setIsNavigating(true);
 
       try {
-        await refetch();
+        const profile = await dispatch(
+          api.endpoints.profile.initiate(undefined, { forceRefetch: true }),
+        ).unwrap();
+
+        try {
+          await refetch();
+        } catch (e) {
+          /* ignore */
+        }
+
+        message.success("Login successful!");
+        const finalRole = profile?.user?.role || profile?.role || role;
+        navigate(getMerchantRedirectPath(finalRole), { replace: true });
       } catch (error) {
         console.warn("Profile fetch delayed:", error);
+        message.success("Login successful!");
+        navigate(getMerchantRedirectPath(role), { replace: true });
       }
-
-      navigate(getMerchantRedirectPath(role), { replace: true });
     } catch (err) {
       message.error(err?.data?.message || "Login failed!");
+      setIsNavigating(false);
     }
   };
 
@@ -157,7 +186,7 @@ const Login = () => {
           <Form.Item style={{ marginBottom: 0 }}>
             <button
               type="submit"
-              disabled={isLoading}
+              disabled={isLoading || isNavigating}
               className="flex items-center justify-center bg-[#3FAE6A] rounded-lg"
               style={{
                 width: "100%",
@@ -168,7 +197,7 @@ const Login = () => {
                 borderRadius: "200px",
               }}
             >
-              {isLoading ? "Signing in..." : "Sign in"}
+              {isLoading || isNavigating ? "Signing in..." : "Sign in"}
             </button>
           </Form.Item>
 

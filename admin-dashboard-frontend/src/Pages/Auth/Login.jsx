@@ -1,15 +1,19 @@
 import { Form, Input, message } from "antd";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import FormItem from "../../components/common/FormItem";
 import image4 from "../../assets/image4.png";
-import { useLoginMutation } from "../../redux/apiSlices/authSlice";
+import { useLoginMutation, authApi } from "../../redux/apiSlices/authSlice";
 import { useUser } from "../../provider/User";
 import { setAuthTokens } from "../../utils/tokenService";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { refetch, user } = useUser();
+  const dispatch = useDispatch();
+  const { user } = useUser();
   const [login, { isLoading }] = useLoginMutation();
+  const [isNavigating, setIsNavigating] = useState(false);
 
   const onFinish = async (values) => {
     const payload = {
@@ -19,6 +23,7 @@ const Login = () => {
     };
 
     try {
+      setIsNavigating(true);
       const result = await login(payload).unwrap();
 
       setAuthTokens(
@@ -27,16 +32,18 @@ const Login = () => {
         payload.device,
       );
 
-      message.success("Login successful!");
-
       let fetchedUser = null;
       // Refetch profile after login
       try {
-        const result = await refetch();
-        fetchedUser = result?.data;
+        const profileResult = await dispatch(
+          authApi.endpoints.profile.initiate(undefined, { forceRefetch: true }),
+        ).unwrap();
+        fetchedUser = profileResult;
       } catch (error) {
         console.warn("Profile fetch delayed:", error);
       }
+
+      message.success("Login successful!");
 
       const role = fetchedUser?.role || user?.role;
 
@@ -47,6 +54,7 @@ const Login = () => {
         navigate("/", { replace: true });
       }
     } catch (err) {
+      setIsNavigating(false);
       message.error(err?.data?.message || "Login failed!");
     }
   };
@@ -95,7 +103,7 @@ const Login = () => {
         <Form.Item style={{ marginBottom: 0 }}>
           <button
             type="submit"
-            disabled={isLoading}
+            disabled={isLoading || isNavigating}
             className="flex items-center justify-center bg-[#3FAE6A] rounded-lg"
             style={{
               width: "100%",
@@ -106,7 +114,7 @@ const Login = () => {
               borderRadius: "200px",
             }}
           >
-            {isLoading ? "Signing in..." : "Sign in"}
+            {isLoading || isNavigating ? "Signing in..." : "Sign in"}
           </button>
         </Form.Item>
       </Form>
