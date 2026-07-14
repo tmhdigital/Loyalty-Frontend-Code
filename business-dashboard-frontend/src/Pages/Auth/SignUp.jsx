@@ -94,7 +94,7 @@ const SignUp = () => {
         <div className="text-center mb-2">
           <img src={image4} alt="logo" className="h-20 w-20 mx-auto" />
           <h1 className="text-[25px] font-semibold mb-[10px] mt-[20px]">
-            Merchant Dashboard
+            Business Dashboard
           </h1>
           <p>Create an account</p>
         </div>
