@@ -236,7 +236,10 @@ const SellManagement = () => {
           rejected: "red",
         };
         return (
-          <Tag color={statusColors[status?.toLowerCase()] || "default"}>
+          <Tag
+            className="px-5 py-1 text-green-800"
+            color={statusColors[status?.toLowerCase()] || "default"}
+          >
             {status?.toUpperCase()}
           </Tag>
         );

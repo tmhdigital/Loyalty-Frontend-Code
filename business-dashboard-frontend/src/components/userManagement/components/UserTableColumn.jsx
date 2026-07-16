@@ -1,6 +1,5 @@
 import { Tooltip, Switch } from "antd";
-import { FaTrash } from "react-icons/fa";
-import { EditOutlined } from "@ant-design/icons";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import Swal from "sweetalert2";
 import CustomTable from "../../common/CustomTable";
 
@@ -25,12 +24,6 @@ const UserTableColumn = ({
       align: "center",
     },
     { title: "Email", dataIndex: "email", key: "email", align: "center" },
-    // {
-    //   title: "Password",
-    //   dataIndex: "password",
-    //   key: "password",
-    //   align: "center",
-    // },
     {
       title: "Phone Number",
       dataIndex: "phone",
@@ -60,7 +53,7 @@ const UserTableColumn = ({
               onClick={() => onEdit(record)}
               className="text-primary hover:text-green-700 text-xl"
             >
-              <EditOutlined />
+              <FaEdit />
             </button>
           </Tooltip>
 
@@ -87,17 +80,20 @@ const UserTableColumn = ({
                   }
                 });
               }}
-              className="text-red-500 hover:text-red-700 text-md"
+              className="text-red-500 hover:text-red-700 text-lg"
             >
               <FaTrash />
             </button>
           </Tooltip>
 
-          <Switch
-            size="small"
-            disabled={isUpdatingStatus}
-            checked={record.status === "Active"}
-            style={{
+          <Tooltip
+            title={record.status === "Active" ? "Deactivate" : "Activate"}
+          >
+            <Switch
+              size="small"
+              disabled={isUpdatingStatus}
+              checked={record.status === "Active"}
+              style={{
               backgroundColor: record.status === "Active" ? "#3fae6a" : "gray",
             }}
             onChange={(checked) => {
@@ -121,6 +117,7 @@ const UserTableColumn = ({
               });
             }}
           />
+          </Tooltip>
         </div>
       ),
     },

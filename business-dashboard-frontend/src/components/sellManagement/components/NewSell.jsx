@@ -619,7 +619,7 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="w-full bg-primary text-white mt-6 text-[16px] font-bold p-5"
+                  className="w-full bg-primary text-white mt-6 text-[16px] font-bold p-5 !border-none"
                   loading={isCheckingOut}
                   disabled={!approvalResponse}
                 >
