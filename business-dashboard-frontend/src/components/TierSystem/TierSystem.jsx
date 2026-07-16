@@ -17,9 +17,9 @@ export default function TierSystem() {
   const [form] = Form.useForm();
   const [isRulesModalVisible, setIsRulesModalVisible] = useState(false);
   const [editingTier, setEditingTier] = useState(null);
-  const [searchText, setSearchText] = useState("");
-  const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(10);
+  const [searchText, _setSearchText] = useState("");
+  const [page, _setPage] = useState(1);
+  const [limit, _setLimit] = useState(10);
   const [auditLogPage, setAuditLogPage] = useState(1);
   const [auditLogLimit, setAuditLogLimit] = useState(10);
 

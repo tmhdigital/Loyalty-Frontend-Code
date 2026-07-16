@@ -55,8 +55,6 @@ const Home = () => {
 
   const {
     data: response,
-    isLoading,
-    isFetching,
     isError,
     refetch,
   } = useGetStatsQuery(queryParams);

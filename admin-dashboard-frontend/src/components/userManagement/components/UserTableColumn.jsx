@@ -1,6 +1,5 @@
 import { Tooltip, Switch } from "antd";
 import { FaEdit, FaTrash } from "react-icons/fa";
-import { EditOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import CustomTable from "../../common/CustomTable";
 

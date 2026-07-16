@@ -41,7 +41,6 @@ const Home = () => {
 
   const {
     data: response,
-    isLoading,
     isError,
   } = useGetStatisticsDataQuery(queryParams);
 
