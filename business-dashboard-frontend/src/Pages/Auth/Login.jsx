@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import FormItem from "../../components/common/FormItem";
-import image4 from "../../assets/image4.png";
+import logo from "../../assets/logo.png";
 import { useLoginMutation } from "../../redux/apiSlices/authSlice";
 import { useUser } from "../../provider/User";
 import { GoogleOAuthProvider, GoogleLogin } from "@react-oauth/google";
@@ -145,7 +145,7 @@ const Login = () => {
     <GoogleOAuthProvider clientId="593611426236-c0aqlvlgbg1jnd5lm3tjmnqjurevdljh.apps.googleusercontent.com">
       <div>
         <div className="text-center mb-8">
-          <img src={image4} alt="logo" className="h-40 w-40 mx-auto" />
+          <img src={logo} alt="logo" className="w-60 mx-auto" />
           <h1 className="text-[25px] font-semibold mb-[10px] mt-[20px]">
             Business Dashboard
           </h1>

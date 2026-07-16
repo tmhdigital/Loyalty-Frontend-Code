@@ -16,7 +16,7 @@ import {
   PushNotifications,
 } from "../../components/common/Svg";
 import { getImageUrl } from "../../components/common/imageUrl";
-import image4 from "../../assets/image4.png";
+import logo from "../../assets/favicon.png";
 import { useUser } from "../../provider/User";
 import { api } from "../../redux/api/baseApi";
 import { logoutSession } from "../../utils/authSession";
@@ -249,15 +249,6 @@ const Sidebar = ({ collapsed }) => {
       ...(isViewAdmin
         ? []
         : [
-            // {
-            //   key: "/currency-conversion",
-            //   icon: renderIcon(PromotionManagement, "/currency-conversion"),
-            //   label: (
-            //     <Link to="/currency-conversion">
-            //       {collapsed ? "" : "Currency Conversion"}
-            //     </Link>
-            //   ),
-            // },
             {
               key: "/push-notifications",
               icon: renderIcon(PushNotifications, "/push-notifications"),
@@ -315,17 +306,6 @@ const Sidebar = ({ collapsed }) => {
       className="h-full flex flex-col bg-white border-r border-primary transition-all duration-300"
       style={{ width: collapsed ? 80 : 250 }}
     >
-      {/* Toggle Button */}
-      {/* <div
-        className="flex justify-end items-center p-2 cursor-pointer"
-        onClick={() => setCollapsed(!collapsed)}
-      >
-        {collapsed ? (
-          <MenuUnfoldOutlined style={{ fontSize: 20 }} />
-        ) : (
-          <MenuFoldOutlined style={{ fontSize: 20 }} />
-        )}
-      </div> */}
 
       {/* Logo */}
       {!collapsed && (
@@ -334,7 +314,7 @@ const Sidebar = ({ collapsed }) => {
           className="logo-container flex items-center justify-center py-4"
         >
           <img
-            src={getImageUrl(user?.profile) || image4}
+            src={getImageUrl(user?.profile) || logo}
             alt="profile"
             style={{
               clipPath: "circle()",

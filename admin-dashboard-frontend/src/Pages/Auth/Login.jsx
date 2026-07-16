@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import FormItem from "../../components/common/FormItem";
-import image4 from "../../assets/image4.png";
+import logo from "../../assets/logo.png";
 import { useLoginMutation, authApi } from "../../redux/apiSlices/authSlice";
 import { useUser } from "../../provider/User";
 import { setAuthTokens } from "../../utils/tokenService";
@@ -62,7 +62,7 @@ const Login = () => {
   return (
     <div>
       <div className="text-center mb-8">
-        <img src={image4} alt="logo" className="h-40 w-40 mx-auto" />
+        <img src={logo} alt="logo" className="w-60 mx-auto" />
         <h1 className="text-[25px] font-semibold mb-[10px] mt-[20px]">
           Admin Dashboard
         </h1>
