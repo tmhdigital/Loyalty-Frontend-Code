@@ -12,6 +12,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Line } from "react-chartjs-2";
 import dayjs from "dayjs";
 import { useGetLineChartDataQuery } from "../../redux/apiSlices/homeSlice";
+import { Spin } from "antd";
 
 ChartJS.register(
   CategoryScale,
@@ -169,7 +170,14 @@ const LineChart = () => {
 
   // Show loading state
   if (isLoading) {
-    return <div className="text-center py-4">Loading...</div>;
+    return (
+      <div
+        className="flex justify-center items-center"
+        style={{ height: chartHeight }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   }
 
   // Show error state

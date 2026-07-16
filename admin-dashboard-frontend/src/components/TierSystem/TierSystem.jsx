@@ -12,6 +12,7 @@ import {
 } from "../../redux/apiSlices/PointTierSlice";
 import { toReadableTime } from "../common/TimeConversion.js";
 import { useUser } from "../../provider/User.jsx";
+import { Spin } from "antd";
 
 export default function TierSystem() {
   const [form] = Form.useForm();
@@ -206,7 +207,12 @@ export default function TierSystem() {
       {/* Tier Cards */}
       <div className="px-8 py-8 flex flex-col gap-4 border border-gray-200 rounded-lg">
         {isLoading || isFetching ? (
-          <p className="text-center text-gray-500">Loading tiers...</p>
+          <div
+            className="flex justify-center items-center"
+            style={{ height: "20vh" }}
+          >
+            <Spin size="large" />
+          </div>
         ) : error ? (
           <p className="text-center text-red-500">Failed to load tiers</p>
         ) : tiers.length === 0 ? (
@@ -226,21 +232,14 @@ export default function TierSystem() {
                     <span className="font-semibold">Points Threshold:</span>{" "}
                     {tier.threshold}
                   </p>
-                  {/* <p>
-                    <span className="font-semibold">Reward:</span> {tier.reward}
-                  </p> */}
                   <p>
                     <span className="font-semibold">Accumulation Rule:</span>{" "}
                     {tier.lockoutDuration}
                   </p>
                   {/* <p>
-                    <span className="font-semibold">Redemption Rule:</span>{" "}
-                    {tier.pointsSystemLockoutDuration}
-                  </p> */}
-                  <p>
                     <span className="font-semibold">Minimum Spend:</span>{" "}
                     {tier.minSpend}
-                  </p>
+                  </p> */}
                 </div>
                 <div className="flex gap-2">
                   <Button
@@ -272,7 +271,12 @@ export default function TierSystem() {
           </h2>
 
           {isLoadingLogs ? (
-            <p className="text-gray-500">Loading audit logs...</p>
+            <div
+              className="flex justify-center items-center"
+              style={{ height: "20vh" }}
+            >
+              <Spin size="large" />
+            </div>
           ) : auditLogsResponse?.data?.data &&
             auditLogsResponse.data.data.length > 0 ? (
             <>
@@ -299,9 +303,6 @@ export default function TierSystem() {
                     setAuditLogPage(page);
                     setAuditLogLimit(pageSize);
                   }}
-                  // showSizeChanger
-                  // showTotal={(total, range) => `${range[0]}-${range[1]} of ${total} logs`}
-                  // pageSizeOptions={['5', '10', '20', '50']}
                 />
               </div>
             </>

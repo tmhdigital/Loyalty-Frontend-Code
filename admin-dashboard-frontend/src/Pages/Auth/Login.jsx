@@ -84,7 +84,7 @@ const Login = () => {
           <Input.Password
             placeholder="Enter your password"
             style={{
-              height: 40,
+              height: 45,
               border: "1px solid #3FAE6A",
               borderRadius: "200px",
             }}

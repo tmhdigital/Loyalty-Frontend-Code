@@ -14,8 +14,7 @@ const allowedRoles = [
 const AuthLoading = () => (
   <div className="flex items-center justify-center h-screen">
     <div className="text-center">
-      <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#3FAE6A] mx-auto mb-4" />
-      <p className="text-gray-600">Loading...</p>
+      <img src="/favicon.png" alt="Loading" className="h-20 w-20 mx-auto animate-pulse" />
     </div>
   </div>
 );

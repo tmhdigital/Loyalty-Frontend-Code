@@ -53,16 +53,6 @@ const Home = () => {
     setIsOpen(false);
   };
 
-  // Show loading state
-  if (isLoading) {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-        {/* <p className="text-gray-600">Loading...</p> */}
-      </div>
-    );
-  }
-
   // Show error state
   if (isError) {
     return (
@@ -177,11 +167,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-
-      {/* Order Table */}
-      {/* <div>
-        <OrderTable />
-      </div> */}
 
       {/* Bar Chart Section */}
       <div className="flex-1 border border-primary bg-[#D7F4DE] rounded-lg p-6">
