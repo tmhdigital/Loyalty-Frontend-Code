@@ -1,5 +1,5 @@
 import { Tooltip, Switch } from "antd";
-import { FaTrash } from "react-icons/fa";
+import { FaEdit, FaTrash } from "react-icons/fa";
 import { EditOutlined } from "@ant-design/icons";
 import Swal from "sweetalert2";
 import CustomTable from "../../common/CustomTable";
@@ -30,12 +30,6 @@ const UserTableColumn = ({
       align: "center",
     },
     { title: "Email", dataIndex: "email", key: "email", align: "center" },
-    // {
-    //   title: "Password",
-    //   dataIndex: "password",
-    //   key: "password",
-    //   align: "center",
-    // },
     {
       title: "Phone Number",
       dataIndex: "phone",
@@ -63,7 +57,7 @@ const UserTableColumn = ({
       width: 120,
       render: (_, record) => (
         <div
-          className="flex gap-4 justify-between align-middle py-[7px] px-[15px] border border-primary rounded-md"
+          className="flex gap-4 justify-between items-center py-[7px] px-[15px] border border-primary rounded-md"
           style={{ alignItems: "center" }}
         >
           <Tooltip title="View & Update Details">
@@ -71,7 +65,7 @@ const UserTableColumn = ({
               onClick={() => onEdit(record)}
               className="text-primary hover:text-green-700 text-xl"
             >
-              <EditOutlined />
+              <FaEdit />
             </button>
           </Tooltip>
 
@@ -97,7 +91,7 @@ const UserTableColumn = ({
                   }
                 });
               }}
-              className="text-red-500 hover:text-red-700 text-md"
+              className="text-red-500 hover:text-red-700 text-lg"
             >
               <FaTrash />
             </button>

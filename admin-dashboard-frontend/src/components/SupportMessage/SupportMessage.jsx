@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Modal, Button, Space } from "antd";
-import { EyeOutlined } from "@ant-design/icons";
+import { Modal, Button, Space, Tooltip } from "antd";
+import { IoEyeSharp } from "react-icons/io5";
 import CustomTable from "../common/CustomTable";
 import { useGetContactMessagesQuery } from "../../redux/apiSlices/contactSlice";
 
@@ -80,14 +80,24 @@ export default function SupportMessage() {
       align: "center",
       width: 100,
       render: (_, record) => (
-        <Space>
-          <Button
-            type="primary"
-            icon={<EyeOutlined />}
-            onClick={() => handleViewMessage(record)}
-            className="bg-transparent border border-primary text-primary hover:bg-primary hover:text-white"
-          ></Button>
-        </Space>
+        // <Space>
+        //   <Button
+        //     type="primary"
+        //     icon={<IoEyeSharp />}
+        //     onClick={() => handleViewMessage(record)}
+        //     className="bg-transparent border border-primary text-primary text-lg hover:bg-primary hover:text-white"
+        //   ></Button>
+        // </Space>
+        <div className="">
+          <Tooltip title="View Details">
+            <button
+              onClick={() => handleViewMessage(record)}
+              className="bg-primary text-white px-4 py-2 rounded-md"
+            >
+              View Details
+            </button>
+          </Tooltip>
+        </div>
       ),
     },
   ];
