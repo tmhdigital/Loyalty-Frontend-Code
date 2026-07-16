@@ -311,13 +311,12 @@ const Sidebar = ({ collapsed }) => {
       {!collapsed && (
         <Link
           to={"/"}
-          className="logo-container flex items-center justify-center py-4"
+          className="logo-container flex items-center justify-center py-8"
         >
           <img
             src={getImageUrl(user?.profile) || logo}
             alt="profile"
             style={{
-              clipPath: "circle()",
               width: 120,
               height: 120,
               objectFit: "cover",
