@@ -3,7 +3,6 @@ import {
   Button,
   Form,
   Input,
-  DatePicker,
   Space,
   message,
   Modal,
@@ -482,13 +481,6 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
                   style={{ backgroundColor: "#f1f1f1" }}
                 />
               </Form.Item>
-              <Form.Item label="Expiry Date" name="date" className="mb-6">
-                <DatePicker
-                  className="mli-tall-picker"
-                  defaultValue={editingRow ? dayjs(editingRow.date) : null}
-                />
-              </Form.Item>
-
               <div className="flex flex-wrap gap-4">
                 {digitalCardData?.promotions &&
                 digitalCardData.promotions.length > 0 ? (

@@ -28,21 +28,14 @@ const Auth = () => {
 
   return (
     <div
-      className="w-full flex items-center justify-between relative"
+      className="w-full flex items-center justify-between relative overflow-hidden"
       style={{ height: "100vh" }}
     >
       {/* Background image */}
       <div style={{ backgroundColor: "#ffffff" }}></div>
 
       {/* Left side - Dynamic image */}
-      <div
-        className="w-1/2 h-full hidden md:flex items-center justify-center"
-        style={{
-          position: "relative",
-          left: 100,
-          zIndex: 1,
-        }}
-      >
+      <div className="w-1/2 h-full hidden md:flex items-center justify-center lg:relative lg:left-[50px] xl:left-[100px] z-10">
         <img
           src={currentImage}
           alt="Authentication visual"
@@ -55,24 +48,29 @@ const Auth = () => {
       </div>
 
       {/* Right side - Auth form */}
-      <div className="md:w-1/2 w-full flex justify-end px-4">
+      <div className="md:w-1/2 w-full flex justify-center lg:justify-end px-4 lg:relative lg:right-[50px] xl:right-[100px] z-10">
         <div
           style={{
             background: "#FCFCFC3B",
-            padding: 30,
-            paddingBottom: 40,
             borderRadius: 15,
             maxWidth: 500,
             width: "100%",
-            position: "relative",
-            right: 100,
-            zIndex: 1,
             border: "1px solid #198248",
             backdropFilter: "blur(10px)",
+            overflow: "hidden",
           }}
           className="shadow-xl"
         >
-          <Outlet />
+          <div
+            style={{
+              padding: 30,
+              paddingBottom: 40,
+              maxHeight: "95vh",
+              overflowY: "auto",
+            }}
+          >
+            <Outlet />
+          </div>
         </div>
       </div>
     </div>
