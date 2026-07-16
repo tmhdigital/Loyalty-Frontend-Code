@@ -86,10 +86,6 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
       message.error("Please enter a card code first");
       return;
     }
-    // if (selectedPromotions.length === 0) {
-    //   message.error("Please select at least one promotion");
-    //   return;
-    // }
 
     const totalBill = form.getFieldValue("totalAmount");
     const pointRedeemed = form.getFieldValue("pointRedeemed");
@@ -561,16 +557,6 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
                     "0.00"}
                 </p>
               </div>
-              {/* <div className="flex justify-between">
-                <p className="font-bold text-[24px] text-secondary">
-                  Total Discounted:
-                </p>
-                <p className="font-bold text-[24px] text-secondary">
-                  {approvalResponse?.totalDiscount ||
-                    form.getFieldValue("totalDiscount") ||
-                    "0.00"}
-                </p>
-              </div> */}
               <div className="flex justify-between">
                 <p className="font-bold text-[24px] text-secondary">
                   Points Redeemed:
