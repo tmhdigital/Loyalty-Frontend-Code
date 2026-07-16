@@ -18,7 +18,6 @@ import { Points } from "../../components/common/Svg";
 import PieChart from "./PieChart";
 import { useGetStatsQuery } from "../../redux/apiSlices/homeSlice";
 import { useUser } from "../../provider/User";
-import Spinner from "../../components/common/Spinner";
 import Failed from "../../components/common/Failed";
 
 ChartJS.register(
@@ -69,15 +68,6 @@ const Home = () => {
     setSelected(option);
     setIsOpen(false);
   };
-
-  // Show loading state
-  if (isLoading || isFetching) {
-    return (
-      <div className="min-h-[60vh] flex items-center justify-center rounded-lg border border-primary bg-[#D7F4DE] px-6 py-10">
-        <Spinner />
-      </div>
-    );
-  }
 
   // Show error state
   if (isError) {

@@ -1,4 +1,4 @@
-import { Button, Col, DatePicker, Form, Row, Select, message } from "antd";
+import { Button, Col, DatePicker, Form, Row, Select, message, Spin } from "antd";
 import "antd/dist/reset.css";
 import dayjs from "dayjs";
 import { useEffect, useMemo, useState } from "react";
@@ -545,7 +545,6 @@ export default function MonthlyStatsChartCustomer() {
   }, [selectedPointsFilter]);
 
   // Handle export report
-  // Handle export report
   const handleExportReport = async () => {
     try {
       const response = await exportReport(queryParams).unwrap();
@@ -778,7 +777,12 @@ export default function MonthlyStatsChartCustomer() {
         className="p-4 rounded-lg border"
         style={{ width: "100%", height: 400, marginTop: "40px" }}
       >
-        <ResponsiveContainer>
+        {isLoading || isFetching ? (
+          <div className="flex justify-center items-center w-full h-full">
+            <Spin size="large" />
+          </div>
+        ) : (
+          <ResponsiveContainer>
           {chartType === "Bar" ? (
             <BarChart
               data={chartData}
@@ -919,6 +923,7 @@ export default function MonthlyStatsChartCustomer() {
             </AreaChart>
           )}
         </ResponsiveContainer>
+        )}
       </div>
 
       {/* Reusable CustomTable */}
