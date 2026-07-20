@@ -37,7 +37,6 @@ const EditModal = ({
   };
 
   const handleSubmit = (values) => {
-    // Send the selected duration value directly as paymentType
     const updatedValues = {
       ...values,
       paymentType: values.duration,
@@ -77,7 +76,7 @@ const EditModal = ({
           <Input.TextArea
             rows={4}
             placeholder="Short description of what this package offers"
-            className="mli-tall-input"
+            style={{ resize: "none", borderColor: "#d8d8d8" }}
           />
         </Form.Item>
 
@@ -120,54 +119,12 @@ const EditModal = ({
           >
             <Select placeholder="Select duration" className="mli-tall-select">
               <Select.Option value="1 month">1 Month</Select.Option>
-              {/* <Select.Option value="3 months">3 Months</Select.Option> */}
               <Select.Option value="4 months">4 Months</Select.Option>
-              {/* <Select.Option value="6 months">6 Months</Select.Option> */}
               <Select.Option value="8 months">8 Months</Select.Option>
               <Select.Option value="1 year">1 Year</Select.Option>
             </Select>
           </Form.Item>
         </div>
-
-        {/* <div className="flex gap-4">
-          <Form.Item
-            name="credit"
-            label="Credit"
-            rules={[{ required: true, message: "Credit is required" }]}
-            className="w-1/3"
-          >
-            <Input
-              type="number"
-              placeholder="100"
-              className="mli-tall-input"
-            />
-          </Form.Item>
-
-          <Form.Item
-            name="paymentType"
-            label="Payment Type"
-            rules={[{ required: true, message: "Payment type is required" }]}
-            className="w-1/3"
-          >
-            <Select placeholder="Select type" className="mli-tall-select">
-              <Select.Option value="Monthly">Monthly</Select.Option>
-              <Select.Option value="Yearly">Yearly</Select.Option>
-            </Select>
-          </Form.Item>
-
-          <Form.Item
-            name="loginLimit"
-            label="Login Limit"
-            rules={[{ required: true, message: "Login limit is required" }]}
-            className="w-1/3"
-          >
-            <Input
-              type="number"
-              placeholder="5"
-              className="mli-tall-input"
-            />
-          </Form.Item>
-        </div> */}
 
         <Form.Item
           name="features"
@@ -182,7 +139,6 @@ const EditModal = ({
         <div className="flex justify-end gap-3 mt-6">
           <Button
             onClick={handleCancel}
-            size="large"
             disabled={isLoading}
             className="border border-primary hover:!border-primary hover:!text-primary"
           >
@@ -193,8 +149,7 @@ const EditModal = ({
             htmlType="submit"
             loading={isLoading}
             disabled={isLoading}
-            className="bg-primary text-white rounded-lg hover:bg-[#012F60] transition-all h-auto py-2 px-6"
-            size="large"
+            className="bg-primary text-white rounded-lg transition-all"
           >
             {isLoading
               ? isEditing

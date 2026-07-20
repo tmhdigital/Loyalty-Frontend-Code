@@ -1,7 +1,7 @@
 import { Form, Input, message } from "antd";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import image4 from "../../assets/image4.png";
+import logo from "../../assets/logo.png";
 import {
   useGoogleLoginMutation,
   useRegisterMutation,
@@ -92,9 +92,9 @@ const SignUp = () => {
       <div>
         {/* Header */}
         <div className="text-center mb-2">
-          <img src={image4} alt="logo" className="h-20 w-20 mx-auto" />
+          <img src={logo} alt="logo" className="w-60 mx-auto" />
           <h1 className="text-[25px] font-semibold mb-[10px] mt-[20px]">
-            Merchant Dashboard
+            Business Dashboard
           </h1>
           <p>Create an account</p>
         </div>
@@ -292,16 +292,6 @@ const SignUp = () => {
             </button>
           </Form.Item>
         </Form>
-
-        {/* Divider */}
-        {/* <div className="relative my-6">
-          <div className="absolute inset-0 flex items-center">
-            <div className="w-full border-t border-gray-300"></div>
-          </div>
-          <div className="relative flex justify-center text-sm">
-            <span className="px-2 bg-white text-gray-500">Or</span>
-          </div>
-        </div> */}
 
         {/* Google Login Button */}
         <div className="flex justify-center mb-6 mt-4">

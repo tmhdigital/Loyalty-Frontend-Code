@@ -52,9 +52,9 @@ const BarChart = () => {
   // Effect to update chart height based on screen size
   useEffect(() => {
     const updateChartHeight = () => {
-      if (window.innerWidth < 768) setChartHeight("220px");
-      else if (window.innerWidth < 1024) setChartHeight("250px");
-      else setChartHeight("300px");
+      if (window.innerWidth < 768) setChartHeight("210px");
+      else if (window.innerWidth < 1024) setChartHeight("240px");
+      else setChartHeight("290px");
     };
 
     updateChartHeight();

@@ -245,23 +245,17 @@ const CustomerManagement = () => {
       render: (_, record) => (
         // <div className=" py-[12px] border border-primary rounded-md">
         <div className="flex- gap-2 ">
+          <div className="">
           <Tooltip title="View Details">
             <button
               onClick={() => showViewModal(record)}
-              className="border border-primary px-4 py-1 rounded bg-[#D7F4DE] mr-5"
+              className="bg-primary text-white px-4 py-2 rounded-md"
             >
               View Details
             </button>
           </Tooltip>
-          {/* <Tooltip title="Customer Ratings">
-              <Rate
-                disabled
-                value={record.rating} // assuming rating is a number from 1 to 5
-                style={{ fontSize: 16, color: "#FFD700" }} // optional styling
-              />
-            </Tooltip> */}
         </div>
-        // </div>
+        </div>
       ),
     },
   ];

@@ -11,6 +11,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Bar } from "react-chartjs-2";
 import dayjs from "dayjs";
 import { useGetYearlyRevenueDataQuery } from "../../redux/apiSlices/homeSlice";
+import { Spin } from "antd";
 
 // Register Chart.js components
 ChartJS.register(
@@ -136,7 +137,14 @@ const BarChart = () => {
 
   // Show loading state
   if (isLoading) {
-    return <div className="text-center py-4">Loading...</div>;
+    return (
+      <div
+        className="flex justify-center items-center"
+        style={{ height: chartHeight }}
+      >
+        <Spin size="large" />
+      </div>
+    );
   }
 
   // Show error state

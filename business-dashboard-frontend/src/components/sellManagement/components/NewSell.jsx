@@ -3,7 +3,6 @@ import {
   Button,
   Form,
   Input,
-  DatePicker,
   Space,
   message,
   Modal,
@@ -86,10 +85,6 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
       message.error("Please enter a card code first");
       return;
     }
-    // if (selectedPromotions.length === 0) {
-    //   message.error("Please select at least one promotion");
-    //   return;
-    // }
 
     const totalBill = form.getFieldValue("totalAmount");
     const pointRedeemed = form.getFieldValue("pointRedeemed");
@@ -486,13 +481,6 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
                   style={{ backgroundColor: "#f1f1f1" }}
                 />
               </Form.Item>
-              <Form.Item label="Expiry Date" name="date" className="mb-6">
-                <DatePicker
-                  className="mli-tall-picker"
-                  defaultValue={editingRow ? dayjs(editingRow.date) : null}
-                />
-              </Form.Item>
-
               <div className="flex flex-wrap gap-4">
                 {digitalCardData?.promotions &&
                 digitalCardData.promotions.length > 0 ? (
@@ -561,16 +549,6 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
                     "0.00"}
                 </p>
               </div>
-              {/* <div className="flex justify-between">
-                <p className="font-bold text-[24px] text-secondary">
-                  Total Discounted:
-                </p>
-                <p className="font-bold text-[24px] text-secondary">
-                  {approvalResponse?.totalDiscount ||
-                    form.getFieldValue("totalDiscount") ||
-                    "0.00"}
-                </p>
-              </div> */}
               <div className="flex justify-between">
                 <p className="font-bold text-[24px] text-secondary">
                   Points Redeemed:
@@ -619,7 +597,7 @@ const NewSell = ({ onBack, onSubmit, editingRow }) => {
                 <Button
                   type="primary"
                   htmlType="submit"
-                  className="w-full bg-primary text-white mt-6 text-[16px] font-bold p-5"
+                  className="w-full bg-primary text-white mt-6 text-[16px] font-bold p-5 !border-none"
                   loading={isCheckingOut}
                   disabled={!approvalResponse}
                 >

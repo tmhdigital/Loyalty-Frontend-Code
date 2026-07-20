@@ -4,6 +4,8 @@ import {
   EditOutlined,
   PlusOutlined,
   CheckCircleFilled,
+  LeftOutlined,
+  RightOutlined,
 } from "@ant-design/icons";
 import EditModal from "./components/EditModal";
 import {
@@ -14,6 +16,7 @@ import {
 } from "../../redux/apiSlices/packageSlice";
 import SubscriptionHeadingIcon from "../../assets/subscription-heading.png";
 import { useUser } from "../../provider/User";
+import { Spin } from "antd";
 
 const PackagesPlans = () => {
   const { user } = useUser();
@@ -137,7 +140,7 @@ const PackagesPlans = () => {
       console.error("Failed to save package:", error);
       message.error(
         error?.data?.message ||
-          `Failed to ${isEditing ? "update" : "create"} package`,
+        `Failed to ${isEditing ? "update" : "create"} package`,
       );
     }
   };
@@ -180,25 +183,10 @@ const PackagesPlans = () => {
     );
   }
 
-  if (isLoading || isFetching) {
-    return (
-      <div className="pt-1 px-4">
-        <div className="flex justify-center items-center py-20">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
-            <p className="text-gray-600">Loading membership plans...</p>
-          </div>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <div className="pt-1 px-4">
       <div className="flex flex-col justify-center items-center mb-8">
-        {/* <p className="bg-primary px-[12px] py-[2px] text-white rounded-3xl mb-2">
-          Pricing Plan
-        </p> */}
         <h2 className="text-[28px] font-semibold text-secondary">
           Plans for all sizes
         </h2>
@@ -217,7 +205,14 @@ const PackagesPlans = () => {
       </div>
       <div className="flex justify-center">
         <div className="w-full 3xl:w-4/5 mb-6">
-          {packages.length === 0 ? (
+          {isLoading || isFetching ? (
+            <div
+              className="flex justify-center items-center"
+              style={{ height: "40vh" }}
+            >
+              <Spin size="large" />
+            </div>
+          ) : packages.length === 0 ? (
             <div className="text-center py-12 text-gray-500">
               <p className="text-lg">No membership plans available.</p>
               <p>
@@ -233,7 +228,7 @@ const PackagesPlans = () => {
                   disabled={packages.length <= cardsPerView}
                   className="h-10 w-10 p-0 flex items-center justify-center"
                 >
-                  {"<"}
+                  <LeftOutlined />
                 </Button>
 
                 <div className="flex-1 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -244,7 +239,9 @@ const PackagesPlans = () => {
                         bordered={false}
                         className={`${getCardStyle(
                           pkg,
-                        )} transition-transform duration-300 h-full`}
+                        )} transition-transform duration-300 h-full flex flex-col`}
+                        styles={{ body: { flexGrow: 1, display: 'flex', flexDirection: 'column' } }}
+                        bodyStyle={{ display: 'flex', flexDirection: 'column', flexGrow: 1 }}
                       >
                         <div className="flex justify-end mb-2">
                           <div className="flex gap-2">
@@ -277,7 +274,7 @@ const PackagesPlans = () => {
                           </p>
                         </div>
 
-                        <div className="bg-gray-50 p-4 rounded-lg ">
+                        <div className="bg-gray-50 p-4 rounded-lg flex-grow mb-4">
                           <List
                             size="small"
                             dataSource={pkg.features}
@@ -293,11 +290,11 @@ const PackagesPlans = () => {
                         </div>
 
                         <Button
-                          className={`w-full mt-12 border h-10 ${
-                            pkg.active
-                              ? "bg-primary text-white hover:!bg-primary hover:!text-white"
-                              : "bg-red-500 text-white hover:!bg-gray-400 hover:!text-white"
-                          }`}
+                          className={`w-full mt-4 border h-10 ${pkg.active
+                              ? "bg-primary border-primary text-white hover:!bg-primary hover:!border-primary hover:!text-white disabled:!bg-gray-300 disabled:!border-gray-300 disabled:!text-gray-500"
+                              : "bg-red-500 border-red-500 text-white hover:!bg-gray-400 hover:!border-gray-400 hover:!text-white disabled:!bg-gray-300 disabled:!border-gray-300 disabled:!text-gray-500"
+                            }`}
+                          style={{ marginTop: 'auto' }}
                           onClick={() => togglePackageStatus(pkg.id)}
                           disabled={isToggling || user?.role === "VIEW_ADMIN"}
                         >
@@ -313,7 +310,7 @@ const PackagesPlans = () => {
                   disabled={packages.length <= cardsPerView}
                   className="h-10 w-10 p-0 flex items-center justify-center"
                 >
-                  {">"}
+                  <RightOutlined />
                 </Button>
               </div>
 
@@ -324,9 +321,8 @@ const PackagesPlans = () => {
                       key={index}
                       type="button"
                       onClick={() => setCurrentSlide(index)}
-                      className={`w-2.5 h-2.5 rounded-full ${
-                        currentSlide === index ? "bg-primary" : "bg-gray-300"
-                      }`}
+                      className={`w-2.5 h-2.5 rounded-full ${currentSlide === index ? "bg-primary" : "bg-gray-300"
+                        }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />
                   ))}

@@ -13,9 +13,9 @@ const PieChart = () => {
 
   useEffect(() => {
     const updateChartHeight = () => {
-      if (window.innerWidth < 768) setChartHeight("150px");
-      else if (window.innerWidth < 1024) setChartHeight("200px");
-      else setChartHeight("250px");
+      if (window.innerWidth < 768) setChartHeight("140px");
+      else if (window.innerWidth < 1024) setChartHeight("190px");
+      else setChartHeight("240px");
     };
     updateChartHeight();
     window.addEventListener("resize", updateChartHeight);

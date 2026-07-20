@@ -58,24 +58,6 @@ const MerchantTableColumn = ({
       key: "totalRevenue",
       align: "center",
     },
-    // {
-    //   title: "Total Points Earned",
-    //   dataIndex: "totalPointsEarned",
-    //   key: "totalPointsEarned",
-    //   align: "center",
-    // },
-    // {
-    //   title: "Total Points Redeemed",
-    //   dataIndex: "totalPointsRedeemed",
-    //   key: "totalPointsRedeemed",
-    //   align: "center",
-    // },
-    // {
-    //   title: "Total Points Pending",
-    //   dataIndex: "totalPointsPending",
-    //   key: "totalPointsPending",
-    //   align: "center",
-    // },
     {
       title: "Total Visits",
       dataIndex: "totalSales",
@@ -139,7 +121,7 @@ const MerchantTableColumn = ({
         // Otherwise show the regular action set
         return (
           <div
-            className="flex gap-2 justify-between align-middle py-[7px] px-[15px] border border-primary rounded-md"
+            className="flex gap-2 justify-between items-center py-[7px] px-[15px] border border-primary rounded-md"
             style={{ alignItems: "center" }}
           >
             <Tooltip title="View Details">

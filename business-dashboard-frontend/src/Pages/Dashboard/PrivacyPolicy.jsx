@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import JoditEditor from "jodit-react";
-import { Button, message, Modal } from "antd";
+import { Button, message, Modal, Spin } from "antd";
 import DOMPurify from "dompurify";
 import {
   useGetPrivacyPolicyQuery,
@@ -54,21 +54,23 @@ const PrivacyPolicy = () => {
     <div className="">
       <div className="flex justify-start items-end mb-6">
         <h2 className="text-xl font-bold">Privacy Policy</h2>
-        {/* <Button
-          onClick={showModal}
-          className="bg-primary px-8 py-5 rounded-full text-white hover:text-secondary text-[17px] font-bold"
-        >
-          Update Privacy Policy
-        </Button> */}
       </div>
 
       <div className="saved-content mt-6 border p-6 rounded-lg bg-white">
-        <div
-          className="prose max-w-none"
-          dangerouslySetInnerHTML={{
-            __html: DOMPurify.sanitize(termsContent || ""),
-          }}
-        />
+        {_isLoading ? (
+          <div className="flex justify-center items-center" style={{ height: "20vh" }}>
+            <Spin size="large" />
+          </div>
+        ) : _isError ? (
+          <div>Error loading Privacy Policy.</div>
+        ) : (
+          <div
+            className="prose max-w-none"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(termsContent || ""),
+            }}
+          />
+        )}
       </div>
 
       <Modal

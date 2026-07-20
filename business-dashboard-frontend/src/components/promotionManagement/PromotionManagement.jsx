@@ -2,8 +2,8 @@
 import { useMemo, useState, useEffect } from "react";
 import { Button, Switch, Tooltip, Modal, Tag, Input } from "antd";
 import { FaEdit } from "react-icons/fa";
-import { AiOutlineEye } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
+import { IoEyeSharp } from "react-icons/io5";
 import Swal from "sweetalert2";
 import NewCampaign from "../promotionManagement/components/NewCampaign.jsx";
 import NotificationsModal from "../promotionManagement/components/NotificationsModal.jsx";
@@ -421,19 +421,19 @@ const PromotionManagement = () => {
       width: 140,
       render: (_, record) => (
         <div className="py-[10px] px-[10px] border border-primary rounded-md">
-          <div className="flex gap-2 justify-between align-middle">
+          <div className="flex gap-2 justify-between items-center">
             <Tooltip title="View">
               <button
                 onClick={() => handleViewClick(record)}
-                className="text-primary hover:text-blue-700 text-[17px]"
+                className="text-primary hover:text-green-700 text-xl pr-1"
               >
-                <AiOutlineEye />
+                <IoEyeSharp />
               </button>
             </Tooltip>
             <Tooltip title="Edit">
               <button
                 onClick={() => handleEditClick(record)}
-                className="text-primary hover:text-green-700 text-[17px] disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:text-gray-400"
+                className="text-primary hover:text-green-700 text-xl disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:text-gray-400"
                 disabled={
                   record.status === "Inactive" || user?.role === "VIEW_MERCHANT"
                 }
@@ -444,20 +444,26 @@ const PromotionManagement = () => {
             <Tooltip title="Delete">
               <button
                 onClick={() => handleDeleteClick(record)}
-                className="text-red-500 hover:text-red-700 text-[17px] disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:text-gray-400"
+                className="text-red-500 hover:text-red-700 text-2xl disabled:text-gray-400 disabled:cursor-not-allowed disabled:hover:text-gray-400"
                 disabled={user?.role === "VIEW_MERCHANT"}
               >
                 <MdDelete />
               </button>
             </Tooltip>
-            <Switch
-              size="small"
-              checked={record.status === "Active"}
-              disabled={user?.role === "VIEW_MERCHANT"}
-              style={{
-                backgroundColor:
-                  record.status === "Active" ? "#3fae6a" : "gray",
-              }}
+
+            <Tooltip
+              title={
+                record.status === "Active" ? "Deactivate" : "Activate"
+              }
+            >
+              <Switch
+                size="small"
+                checked={record.status === "Active"}
+                disabled={user?.role === "VIEW_MERCHANT"}
+                style={{
+                  backgroundColor:
+                    record.status === "Active" ? "#3fae6a" : "gray",
+                }}
               onChange={async (checked) => {
                 const result = await Swal.fire({
                   title: "Are you sure?",
@@ -495,6 +501,7 @@ const PromotionManagement = () => {
                 }
               }}
             />
+            </Tooltip>
           </div>
         </div>
       ),

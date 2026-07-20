@@ -3,6 +3,7 @@ import JoditEditor from "jodit-react";
 import { Button, message, Modal, Tabs } from "antd";
 import { useSearchParams } from "react-router-dom";
 import DOMPurify from "dompurify";
+import { Spin } from "antd";
 
 import {
   useGetMerchantTermsAndConditionsQuery,
@@ -126,7 +127,12 @@ const TermsAndConditions = () => {
             children: (
               <div className="saved-content mt-6 border p-6 rounded-lg bg-white">
                 {isLoadingCustomer ? (
-                  <div>Loading...</div>
+                  <div
+                    className="flex justify-center items-center"
+                    style={{ height: "20vh" }}
+                  >
+                    <Spin size="large" />
+                  </div>
                 ) : isErrorCustomer ? (
                   <div>Error loading customer terms and conditions.</div>
                 ) : (
@@ -146,7 +152,12 @@ const TermsAndConditions = () => {
             children: (
               <div className="saved-content mt-6 border p-6 rounded-lg bg-white">
                 {isLoadingMerchant ? (
-                  <div>Loading...</div>
+                  <div
+                    className="flex justify-center items-center"
+                    style={{ height: "20vh" }}
+                  >
+                    <Spin size="large" />
+                  </div>
                 ) : isErrorMerchant ? (
                   <div>Error loading merchant terms and conditions.</div>
                 ) : (
