@@ -7,6 +7,7 @@ export default defineConfig(({ mode }) => {
   
   return {
     plugins: [react()],
+    base: '/admin/',
     server: {
       host: true,
       port: 3004,

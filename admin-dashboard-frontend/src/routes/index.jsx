@@ -121,6 +121,9 @@ const router = createBrowserRouter([
     ],
   },
   {
+    basename: "/admin",
+  },
+  {
     path: "/auth",
     element: <Auth />,
     children: [

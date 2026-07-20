@@ -88,6 +88,9 @@ const router = createBrowserRouter([
     ],
   },
   {
+    basename: "/business",
+  },
+  {
     path: "/success",
     element: <Success />,
   },
