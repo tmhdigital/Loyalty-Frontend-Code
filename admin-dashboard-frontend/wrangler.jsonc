@@ -1,8 +1,10 @@
 {
     "name": "loyalty-admin-code",
     "compatibility_date": "2026-07-20",
+    "main": "src/worker/index.js",
     "assets": {
         "directory": "./dist",
+        "binding": "ASSETS",
         "not_found_handling": "single-page-application"
     }
 }
