@@ -88,9 +88,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    basename: "/business",
-  },
-  {
     path: "/success",
     element: <Success />,
   },
@@ -144,6 +141,10 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
-]);
+],
+  {
+    basename: "/business",
+  },
+);
 
 export default router;

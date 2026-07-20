@@ -121,9 +121,6 @@ const router = createBrowserRouter([
     ],
   },
   {
-    basename: "/admin",
-  },
-  {
     path: "/auth",
     element: <Auth />,
     children: [
@@ -157,6 +154,9 @@ const router = createBrowserRouter([
     path: "*",
     element: <NotFound />,
   },
-]);
+],
+  {
+    basename: "/admin",
+  },);
 
 export default router;
