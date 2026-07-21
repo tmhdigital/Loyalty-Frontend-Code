@@ -156,7 +156,7 @@ const router = createBrowserRouter([
   },
 ],
   {
-    basename: "/admin",
+    basename: "/",
   },);
 
 export default router;

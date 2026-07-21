@@ -7,7 +7,7 @@ export default defineConfig(({ mode }) => {
 
   return {
     plugins: [react(), firebaseMessagingSwPlugin(env)],
-    base: '/business/',
+    base: '/',
     server: {
       host: true, // 0.0.0.0 — localhost + LAN IP (e.g. 10.10.7.x) both work
       port: 3003,

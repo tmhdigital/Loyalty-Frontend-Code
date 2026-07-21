@@ -143,7 +143,7 @@ const router = createBrowserRouter([
   },
 ],
   {
-    basename: "/business",
+    basename: "/",
   },
 );
 
