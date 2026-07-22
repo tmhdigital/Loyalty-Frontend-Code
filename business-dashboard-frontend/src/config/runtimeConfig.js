@@ -25,7 +25,7 @@ export const getApiBaseUrl = () => {
 export const getMediaBaseUrl = () => {
   const apiBase = getApiBaseUrl();
 
-  return normalizeUrl(import.meta.env.VITE_MEDIA_BASE_URL, stripApiSuffix(apiBase));
+  return normalizeUrl(import.meta.env.VITE_MEDIA_BASE_URL || stripApiSuffix(apiBase));
 };
 
 // =========================
