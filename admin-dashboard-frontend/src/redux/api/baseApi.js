@@ -13,7 +13,7 @@ if (!apiBaseUrl) {
   throw new Error("VITE_API_URL is missing");
 }
 
-export const mediaBaseUrl = trimTrailingSlash(import.meta?.env?.VITE_MEDIA_URL);
+export const mediaBaseUrl = trimTrailingSlash(import.meta.env.VITE_MEDIA_URL);
 
 if (!mediaBaseUrl) {
   throw new Error("VITE_MEDIA_URL is missing");
