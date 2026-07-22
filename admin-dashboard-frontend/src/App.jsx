@@ -14,4 +14,4 @@ function App() {
 }
 
 export default App;
-// Media Url has been removed from the code as it is not needed in the frontend. The media url is now being fetched from the backend and passed to the frontend via API calls.z
+// Media Url added in production env.
