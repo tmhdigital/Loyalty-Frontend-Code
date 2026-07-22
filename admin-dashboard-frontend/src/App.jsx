@@ -14,4 +14,4 @@ function App() {
 }
 
 export default App;
-// Media Url added in production env.
+// Checking Admin dashboard after clearing cache.
