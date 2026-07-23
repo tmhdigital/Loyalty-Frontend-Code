@@ -16,4 +16,4 @@ function App() {
   );
 }
 export default App;
-//  Run time file configured.
+// Media Url has been updated in Production environment.
